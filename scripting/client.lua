@@ -65,23 +65,37 @@ RegisterNetEvent('dialog:declined', function()
     SendNUIMessage({ action = "closeDialog" })
 end)
 
-RegisterCommand('testdialog', function()
-    OpenConfirmationDialog("Confirm Action", "Are you sure you want to continue?", function(response)
-        if response then
+exports("useDialog", function(dialogType, data) 
+    if type(dialogType) ~= "string" then return print("ERROR: dialog type must be a string") end
+    if type(data) ~= "table" then return print("ERROR: dialog data must be a table") end
+
+    if dialogType == "alert" then
+            if not data.message or #data.message <= 0 then return print("ERROR: no message was provided, add message in your data table") end
+            if not data.title or #data.title <= 0 then data.title = "Alert" end
+            OpenAlertDialog(data.title, data.message)
+    elseif dialogType == "input"
+        if not data.title or #data.title <= 0 then data.title = "Alert" end
+        if not data.options or type(data.options) ~= "table" then return print("ERROR: no options provided in data.options") end
+        else 
+            for _, v in pairs(data.options) do
+                if not v.label or #v.label <= 0 then return print("ERROR: no label provided") end
+                if not v.placeholder or #v.placeholder <= 0 then return print("ERROR: no placeholder provided") end
+                if not v.type or #v.type <= 0 then v.type = "text" end
+            end
+            OpenInputDialog(data.title, data.options, function(values)
+                    return values
+                end)
         end
-    end)
-end, false)
 
-RegisterCommand('alertme', function(source, args)
-    local message = table.concat(args, " ")
-    if message == "" then message = "This is an alert message." end
-    OpenAlertDialog("Alert", message)
-end, false)
-
-RegisterCommand('testinput', function()
-    OpenInputDialog("User Information", {
-        { label = "Your Name", placeholder = "Enter your name", type = "text" },
-        { label = "Age", placeholder = "Enter your age", type = "text" }
-    }, function(values)
-    end)
-end, false)
+    elseif dialogType == "dialog"
+         if not data.message or #data.message <= 0 then return data.message = "Are you sure you want to continue?" end
+            if not data.title or #data.title <= 0 then data.title = "Confirm Action" end
+            OpenConfirmationDialog(data.title, data.message, function(response)
+                if response then return true end
+                else return false end
+            end)
+    else 
+        print("ERROR: Dialog type must be either alert, input, or dialog")
+        return
+    end
+end)
