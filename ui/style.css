@@ -1,0 +1,96 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.dialog, .alert, .input-dialog {
+  background: #171717;
+  color: white;
+  padding: 15px;
+  border-radius: 6px;
+  width: 360px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+  text-align: left;
+  display: none;
+}
+
+.alert {
+  width: 250px;
+}
+
+.dialog h2, .alert h2, .input-dialog h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.dialog p, .alert p, .input-dialog p {
+  font-size: 13px;
+  color: #999899;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  font-size: 13px;
+  color: #b3b3b3;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  background: #222;
+  border: 1px solid #444;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #777;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button {
+  border: none;
+  padding: 9px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decline {
+  background: #707571;
+  color: white;
+}
+
+.confirm {
+  background: #007bff;
+  color: white;
+}
+
+.button:hover {
+  opacity: 0.85;
+}

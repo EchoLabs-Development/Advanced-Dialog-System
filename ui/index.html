@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog - Echo Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dialog">
+        <h2 id="dialogTitle">Are you sure?</h2>
+        <p id="dialogText">Are you sure you want to proceed with this action?</p>
+        <div class="buttons">
+            <button class="button decline" onclick="handleDecline()">Cancel</button>
+            <button class="button confirm" onclick="handleConfirm()">Confirm</button>
+        </div>
+    </div>
+
+    <div class="alert">
+        <h2 id="alertTitle">Alert</h2>
+        <p id="alertText">This is an alert message.</p>
+        <div class="buttons">
+            <button class="button confirm" onclick="handleAlertOK()">OK</button>
+        </div>
+    </div>
+
+    <div class="input-dialog">
+      <h2 id="inputTitle">Input</h2>
+      <p id="inputDescription">Enter the required information below to proceed.</p>
+      <div id="inputFields"></div>
+      <div class="buttons">
+          <button class="button decline" onclick="handleDecline()">Cancel</button>
+          <button class="button confirm" onclick="handleInputSubmit()" disabled>Confirm</button>
+      </div>
+  </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
